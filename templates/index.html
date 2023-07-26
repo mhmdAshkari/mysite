@@ -1,0 +1,432 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetes Program</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2196f3" />
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico'%}" type="image/x-icon" />
+
+    <link rel="stylesheet" href="{% static 'assets/css/materialize.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+    <script src="{% static 'assets/js/jquery-3.6.0.min.js'%}"></script>
+</head>
+<body>
+    <div id="full-page-wrapper">
+        <div class="circle-shape floating-shapes"></div>
+        <div class="square-shape floating-shapes"></div>
+        <div class="square-shape2 floating-shapes"></div>
+        <div class="square-shape3 floating-shapes"></div>
+        <form id="main-panel"  method="post">
+            {% csrf_token %}
+
+            <div class="card" id="page-1">
+                <div class="page">
+                    <div class="center">
+                        <i class="material-icons pulse">health_and_safety</i>
+                        <h2>Are you ready to</h2>
+                        <h2>measure your</h2>
+                        <h2>Diabetes Risk?</h2>
+                    </div>
+                    <button data-this-page="1" data-next-page="2" class="btn waves-effect waves-light next-page">Lets Go!<i class="material-icons">chevron_right</i></button>
+                </div>
+            </div>
+            <div class="card" id="page-2" style="display:none;">
+                <div class="page">
+
+                    <ul class="nav nav-tabs process-model" role="tablist">
+                        <li class="active">
+                            <p>
+                                <i class="material-icons">accessibility_new</i>
+                                <span>BMI</span>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <i class="material-icons">monitor_heart</i>
+                                <span>Health Metrics</span>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <i class="material-icons">summarize</i>
+                                <span>Result</span>
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="row" id="select-gender">
+                        <div class="col m6 s12">
+                            <div class="box gender z-depth-0" id="male">
+                                <i class="material-icons blue-text gender-option" data-gender="male">male</i>
+                            </div>
+                        </div>
+                        <div class="col m6 s12">
+                            <div class="box gender z-depth-0" id="female">
+                                <i class="material-icons pink-text gender-option" data-gender="female">female</i>
+                            </div>
+                        </div>
+                    </div>                    
+                    
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="box">
+                                <div class="col m3 s1"></div>
+                                <div class="input-field col m6 s10"  >
+                                    <input id="height" class="ltr center" value="170" type="text" name="height">
+                                    <label for="height">Height(cm)</label>
+                                    <p class="helper-text">Between 20 and 230</p>
+                                </div>
+                                <div class="col m3 s1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m6 s12">
+                            <div class="box z-depth-0" method="post" name="age">
+                                <h4>Age</h4>
+                                <p class="counter" id="age" data-value="20" name="age">20</p>
+                                <div class="buttons-wrapper">
+                                    <button class="btn-floating waves-effect waves-light add"><i class="material-icons">add</i></button>
+                                    <button class="btn-floating waves-effect waves-light minus"><i class="material-icons">remove</i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col m6 s12" method="post" >
+                            <div class="box z-depth-0" >
+                                <h4>Weight</h4>
+                                <p class="counter" id="weight" data-value="60" name="Weight">60 KG</p>
+                                <div class="buttons-wrapper">
+                                    <button class="btn-floating waves-effect waves-light add"><i class="material-icons">add</i></button>
+                                    <button class="btn-floating waves-effect waves-light minus"><i class="material-icons">remove</i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button data-this-page="2" data-next-page="3" class="btn waves-effect waves-light next-page">Next Step<i class="material-icons">chevron_right</i></button>
+                </div>
+            </div>
+
+            <div class="card" id="page-3" style="display:none;">
+                <div class="page">
+                    <input type="hidden" id="blood-pressure-input" name="blood_pressure">
+                    {% csrf_token %}
+                    <ul class="nav nav-tabs process-model" role="tablist">
+                        <li class="visited">
+                            <p>
+                                <i class="material-icons">accessibility_new</i>
+                                <span>BMI</span>
+                            </p>
+                        </li>
+                        <li class="active">
+                            <p>
+                                <i class="material-icons">monitor_heart</i>
+                                <span>Health Metrics</span>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <i class="material-icons">summarize</i>
+                                <span>Result</span>
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="row">
+                        <div class="col m6 s12">
+                            <div class="box z-depth-0">
+                                <h4>Blood Pressure</h4>
+                                <p class="desc">do you have a history of high blood pressure?</p>
+                                <div class="radio-buttons-behavior" id="blood-pressure">
+                                    <div class="center">
+                                        <button data-value="1" id="pressure" class="btn waves-effect waves-light inactive">
+                                            I have
+                                        </button>
+                                    </div>
+                                    <div class="center">
+                                        <button data-value="0" id="no-pressure" class="btn waves-effect waves-light active">
+                                            don't have
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col m6 s12">
+                            <div class="box z-depth-0">
+                                <h4>Cholesterol</h4>
+                                <p class="desc">do you have a history of cholesterol?</p>
+                                <div class="radio-buttons-behavior" id="cholesterol">
+                                    <div class="center">
+                                        <button data-value="1" id="cholesteroll" class="btn waves-effect waves-light inactive">
+                                            I have
+                                        </button>
+                                    </div>
+                                    <div class="center">
+                                        <button data-value="0" class="btn waves-effect waves-light active">
+                                            don't have
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="box z-depth-0" id="general-health">
+                                <h4>General Health</h4>
+                                <div class="row no-margin">
+                                    <div class="col m3 hide-on-small-and-down"></div>
+                                    <div class="col m4 s12 left-align">
+                                        <p>
+                                            <label>
+                                                <input name="general-health" type="radio" value="Very Good" checked />
+                                                <span>Very Good</span>
+                                            </label>
+                                        </p>
+                                    </div>
+                                    <div class="col m4 s12 left-align">
+                                        <p>
+                                            <label>
+                                                <input name="general-health" type="radio" value="Good"/>
+                                                <span>Good</span>
+                                            </label>
+                                        </p>
+                                    </div>
+                                    <div class="col m1 hide-on-small-and-down"></div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col m3 hide-on-small-and-down"></div>
+                                    <div class="col m4 s12 left-align">
+                                        <p>
+                                            <label>
+                                                <input name="general-health" type="radio" value="Normal"/>
+                                                <span>Normal</span>
+                                            </label>
+                                        </p>
+                                    </div>
+                                    <div class="col m4 s12 left-align">
+                                        <p>
+                                            <label>
+                                                <input name="general-health" type="radio" value="Poor"/>
+                                                <span>Poor</span>
+                                            </label>
+                                        </p>
+                                    </div>
+                                    <div class="col m1 hide-on-small-and-down"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m6 s12">
+                            <div class="box z-depth-0">
+                                <h4>Physical Health</h4>
+                                <p class="desc">in the last 30 days, how many days were you physically in perfect health?</p>
+                                <p class="counter" id="physical-health" data-value="30">30 Days</p>
+                                <div class="buttons-wrapper">
+                                    <button disabled class="btn-floating waves-effect waves-light add"><i class="material-icons">add</i></button>
+                                    <button class="btn-floating waves-effect waves-light minus"><i class="material-icons">remove</i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col m6 s12">
+                            <div class="box z-depth-0">
+                                <h4>Mental Health</h4>
+                                <p class="desc">in the last 30 days, how many days were you mentally and psychologically healthy?</p>
+                                <p class="counter" id="mental-health" data-value="30">30 Days</p>
+                                <div class="buttons-wrapper">
+                                    <button disabled class="btn-floating waves-effect waves-light add"><i class="material-icons">add</i></button>
+                                    <button class="btn-floating waves-effect waves-light minus"><i class="material-icons">remove</i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m6 s12">
+                            <div class="box z-depth-0">
+                                <h4>Fruits</h4>
+                                <p class="desc">do you eat at least one fruit every day?</p>
+                                <div class="radio-buttons-behavior" id="fruits">
+                                    <div class="center">
+                                        <button data-value="1" class="btn waves-effect waves-light active" id="Fruits">
+                                            Yes
+                                        </button>
+                                    </div>
+                                    <div class="center">
+                                        <button data-value="0" class="btn waves-effect waves-light inactive">
+                                            No
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col m6 s12">
+                            <div class="box z-depth-0">
+                                <h4>Heart Disease or Attack</h4>
+                                <p class="desc">do you have a history of heart disease or attack?</p>
+                                <div class="radio-buttons-behavior" id="heart-attack">
+                                    <div class="center">
+                                        <button id="heartattack" data-value="1" class="btn waves-effect waves-light inactive">
+                                            I have
+                                        </button>
+                                    </div>
+                                    <div class="center">
+                                        <button data-value="0" class="btn waves-effect waves-light active">
+                                            don't have
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" data-this-page="3" data-next-page="4" class="btn waves-effect waves-light next-page" >Calculate Risk<i class="material-icons">chevron_right</i></button>
+                </div>
+            </div>
+
+            <div class="card" id="page-4" style="display:none;">
+                <div class="page">
+                    <ul class="nav nav-tabs process-model" role="tablist">
+                        <li class="visited">
+                            <p>
+                                <i class="material-icons">accessibility_new</i>
+                                <span>BMI</span>
+                            </p>
+                        </li>
+                        <li class="visited">
+                            <p>
+                                <i class="material-icons">monitor_heart</i>
+                                <span>Health Metrics</span>
+                            </p>
+                        </li>
+                        <li class="active">
+                            <p>
+                                <i class="material-icons">summarize</i>
+                                <span>Result</span>
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="row">
+                        <div class="col s12 center">
+                            <h3>Your Diabetes Risk:</h3>
+                            <h2 id="risk"></h2>
+                        </div>
+                        <div class="col s12 justify">
+                            <p><i class="material-icons left amber-text">warning</i> All these calculations are estimated and done with the help of artificial intelligence and do not represent the real chance of you getting diabetes. If you need specialized information and an accurate estimate, see your Doctor.</p>
+                        </div>
+                        <div class="col s12 center">
+                            <p>What is Diabetes? <span data-this-page="4" data-next-page="5" class="next-page">click here</span> to know more.</p>
+                        </div>
+                    </div>
+                    <button data-this-page="4" data-next-page="2" class="btn waves-effect waves-light next-page">Edit<i class="material-icons">refresh</i></button>
+                </div>
+            </div>
+
+            <div class="card" id="page-5" style="display:none;">
+                <div class="page">
+                    <div class="row">
+                        <div class="col s12">
+                            <img class="responsive-img z-depth-1" src="{% static 'img/diabetes.jpg'%}" alt="diabetes" />
+                            <p>Diabetes is a chronic disease that occurs either when the pancreas does not produce enough insulin or when the body cannot effectively use the insulin it produces. Insulin is a hormone that regulates blood glucose. Hyperglycaemia, also called raised blood glucose or raised blood sugar, is a common effect of uncontrolled diabetes and over time leads to serious damage to many of the body's systems, especially the nerves and blood vessels.</p>
+                            <p>In 2014, 8.5% of adults aged 18 years and older had diabetes. In 2019, diabetes was the direct cause of 1.5 million deaths and 48% of all deaths due to diabetes occurred before the age of 70 years. Another 460 000 kidney disease deaths were caused by diabetes, and raised blood glucose causes around 20% of cardiovascular deaths.</p>
+                            <p>Between 2000 and 2019, there was a 3% increase in age-standardized mortality rates from diabetes. In lower-middle-income countries, the mortality rate due to diabetes increased 13%.</p>
+                            <p>By contrast, the probability of dying from any one of the four main noncommunicable diseases (cardiovascular diseases, cancer, chronic respiratory diseases or diabetes) between the ages of 30 and 70 decreased by 22% globally between 2000 and 2019.</p>
+                            <p><i class="material-icons left pink-text">feed</i> Source: <a href="https://www.who.int/news-room/fact-sheets/detail/diabetes#:~:text=Diabetes%20is%20a%20chronic%20disease,hormone%20that%20regulates%20blood%20glucose." target="_blank">World Health Org</a></p>
+                        </div>
+                    </div>
+                    <button data-this-page="5" data-next-page="1" class="btn waves-effect waves-light next-page">Start Test<i class="material-icons">chevron_right</i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).on('submit', '#main-panel', function(e) {
+            e.preventDefault(); // Prevent the default form submission behavior
+            var heartattack = false; 
+            var Fruits = false;
+            var selectedGender = 'female';
+            var blood_pressure= false;
+            var cholesterol=false;
+            var ageValue = $('#age').text().trim();
+            var weightValue = $('#weight').text().trim();
+            var physical_health = $('#physical-health').text().trim();
+            var generalHealthValue = $('input[name="general-health"]:checked').val();
+            var mental_health = $("mental-health").text().trim();
+            $(document).ready(function() {
+                var isHeartAttack = $('#heartattack').hasClass('active');
+                var isFruits = $('#Fruits').hasClass('active');
+                var isCholesteroll = $('#cholesteroll').hasClass('active');
+                var isBloodPressure = $('#pressure').hasClass('active');
+                var isMaleActive = $('#male').hasClass('active');
+                //var isFemaleActive = $('#female').hasClass('active');
+                if (isHeartAttack) {
+                    heartattack = true;
+                }
+                if (isFruits) {
+                    Fruits = true;
+                }
+                if (isMaleActive) {
+                    selectedGender = 'male';
+                } 
+                if (isBloodPressure) {
+                    blood_pressure = true;
+                }
+                if(isCholesteroll){
+                    cholesterol = true;
+                }
+
+                console.log("blood pressure: ",blood_pressure)
+                console.log("Selected Gender: ", selectedGender);
+    
+                console.log("Starting");
+                console.log($('#height').val());
+                console.log("General Health:", generalHealthValue);
+                console.log("physical_health" , physical_health);
+
+                $.ajax({
+                    url: '', // Replace with the actual URL of your AJAX view
+                    type: 'POST',
+                    data: {
+                        height: $('#height').val(),
+                        age: ageValue,
+                        heartattack: heartattack,
+                        weight: weightValue,
+                        selected_gender: selectedGender, // Include the selectedGender here
+                        blood_pressure: blood_pressure,
+                        cholesterol: cholesterol, 
+                        general_health: generalHealthValue,
+                        physical_health: physical_health,
+                        mental_health: mental_health,
+                        Fruits: Fruits,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        console.log("success");
+                        // Handle the success response from the server
+                        // You can update the page content based on the response data
+                    },
+                    error: function(xhr, errmsg, err) {
+                        console.log("error");
+                        // Handle any errors that occur during the AJAX request
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+    
+    
+    
+    <script src="{% static 'assets/plugins/smooth-scrollbar/smooth-scrollbar.js'%}"></script>
+    <script src="{% static 'assets/plugins/smooth-scrollbar/plugins/overscroll.js'%}"></script>
+    <script src="{% static 'assets/js/materialize.min.js'%}"></script>
+    <script src="{% static 'assets/js/common.js'%}"></script>
+    <script src="{% static 'assets/js/main.js'%}"></script>
+    <!-- Add jQuery library -->
+
+    
+</body>
+</html>

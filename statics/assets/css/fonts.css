@@ -1,0 +1,64 @@
+@charset "utf-8";
+@font-face {
+    font-family: enFontRegular;
+    src: url('../fonts/signikanegative/signikanegative-medium.eot');
+    src: url('../fonts/signikanegative/signikanegative-medium.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/signikanegative/signikanegative-medium.woff2') format('woff2'),
+    url('../fonts/signikanegative/signikanegative-medium.woff') format('woff'),
+    url('../fonts/signikanegative/signikanegative-medium.ttf') format('truetype'),
+    url('../fonts/signikanegative/signikanegative-medium.svg') format('svg');
+    font-weight: 900;
+    font-style: normal;
+}
+
+/* Material Icons*/
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/material-icons/MaterialIcons-Regular.eot'); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url('../fonts/material-icons/MaterialIcons-Regular.woff2') format('woff2'),
+    url('../fonts/material-icons/MaterialIcons-Regular.woff') format('woff'),
+    url('../fonts/material-icons/MaterialIcons-Regular.ttf') format('truetype');
+}
+
+.material-icons {
+    font-family: 'Material Icons', serif !important;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+}
+
+.fs-12 { font-size: 12px !important; }
+.fs-13 { font-size: 13px !important; }
+.fs-14 { font-size: 14px !important; }
+.fs-15 { font-size: 15px !important; }
+.fs-16 { font-size: 16px !important; }
+.fs-17 { font-size: 17px !important; }
+.fs-18 { font-size: 18px !important; }
+.fs-19 { font-size: 19px !important; }
+.fs-20 { font-size: 20px !important; }
+.fs-22 { font-size: 22px !important; }
+.fs-24 { font-size: 24px !important; }
+.fs-28 { font-size: 28px !important; }
+.fs-32 { font-size: 32px !important; }
+.fs-36 { font-size: 36px !important; }
+.fs-40 { font-size: 40px !important; }
+.fs-48 { font-size: 48px !important; }
+.fs-56 { font-size: 56px !important; }
+.fs-64 { font-size: 64px !important; }
+.fs-84 { font-size: 84px !important; }
+.fs-92 { font-size: 92px !important; }

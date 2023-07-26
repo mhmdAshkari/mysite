@@ -1,0 +1,375 @@
+@charset "utf-8";
+:root{
+    --borderWidth: 5px;
+    --opposite-color: #e91e63;
+    --main-color: #42a5f5;
+    --main-darker-color: #1e88e5;
+    --dark-color: #121a1e;
+}
+html, body {
+    background: linear-gradient(-225deg, #b3e5fc 0%, #c8bef6 48%, #a5d6a7 100%);
+    background-size: 300% 300%;
+    animation: gradient 20s ease infinite;
+}
+
+#full-page-wrapper {
+    /*background-image: linear-gradient(-225deg, #303f9f 0%, #B19FFF 48%, #ea80fc 100%);*/
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+@keyframes gradient {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+#full-page-wrapper .floating-shapes {
+    position: absolute;
+}
+#full-page-wrapper .circle-shape {
+    width: 2000px;
+    height: 2000px;
+    opacity: 0.8;
+    background: repeating-linear-gradient(-45deg, #ffffff, #ffffff 1px, transparent 8px, transparent 14px);
+    border-radius: 50%;
+    top: -1300px;
+    left: -900px;
+}
+#full-page-wrapper .square-shape {
+    width: 1600px;
+    height: 1600px;
+    opacity: 0.6;
+    background-image: linear-gradient(120deg, #4527a0 0%, #96e6a1 100%);
+    transform: rotate(45deg);
+    bottom: -800px;
+    right: -800px;
+}
+#full-page-wrapper .square-shape2 {
+    width: 1200px;
+    height: 1200px;
+    opacity: 0.6;
+    background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+    transform: rotate(45deg);
+    border-radius: 25px;
+    bottom: -900px;
+    left: -200px;
+}
+#full-page-wrapper .square-shape3 {
+    width: 1300px;
+    height: 1300px;
+    opacity: 0.6;
+    background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    transform: rotate(45deg);
+    top: -850px;
+    right: -650px;
+}
+#full-page-wrapper #main-panel {
+    width: 40%;
+}
+#full-page-wrapper #main-panel .card {
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 25px;
+}
+#full-page-wrapper #main-panel > .card {
+    position: relative;
+    padding: 0;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+}
+#full-page-wrapper #main-panel .page {
+    padding: 20px 20px 69px;
+    display: inline-block;
+    width: 100%;
+}
+#full-page-wrapper #main-panel #page-1 .center {
+
+}
+#full-page-wrapper #main-panel .card.exit-flipped {
+    animation: exit-flipped 0.8s;
+}
+#full-page-wrapper #main-panel .card.show-flipped {
+    animation: show-flipped 1.6s;
+}
+@keyframes exit-flipped {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(90deg);
+    }
+}
+@keyframes show-flipped {
+    0% {
+        transform: rotateY(90deg);
+    }
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+#full-page-wrapper #main-panel .page i.pulse {
+    font-size: 128px;
+    color: #e91e63;
+}
+#full-page-wrapper #main-panel .page h2 {
+    width: 100%;
+    font-weight: bolder;
+    margin: 20px 0;
+}
+#full-page-wrapper #main-panel .page h2:last-child {
+    background-image: linear-gradient(to right, #e91e63 0%, #673ab7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 64px;
+}
+#full-page-wrapper #main-panel button.next-page {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 64px;
+    line-height: 64px;
+    left: 0;
+    border-radius: 0 0 25px 25px;
+    font-size: 20px;
+    font-family: 'enFontRegular', enFontRegular, Tahoma, serif;
+}
+#full-page-wrapper #main-panel button.next-page i {
+    float: right;
+    font-size: 24px;
+}
+#full-page-wrapper #main-panel .process-model {
+    z-index: 0;
+    width: 100%;
+    padding: 0 1rem;
+    text-align: center;
+    position: relative;
+    margin: 20px auto;
+}
+#full-page-wrapper #main-panel .process-model li::after {
+    background: #e5e5e5 none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 4px;
+    margin: 0 auto;
+    position: absolute;
+    top: 33px;
+    width: 50%;
+    z-index: -1;
+    transition: all 0.5s;
+}
+#full-page-wrapper #main-panel .process-model li:first-child:after {
+    right: 25px;
+}
+#full-page-wrapper #main-panel .process-model li:nth-child(2):after {
+    right: calc(50% - 25px);
+}
+#full-page-wrapper #main-panel .process-model li:last-child:after {
+    display: none;
+    width: 0;
+}
+#full-page-wrapper #main-panel .process-model li.visited::after {
+    background: var(--opposite-color);
+}
+#full-page-wrapper #main-panel .process-model li {
+    display: inline-block;
+    text-align: center;
+}
+#full-page-wrapper #main-panel .process-model li:first-child {
+    float: right;
+}
+#full-page-wrapper #main-panel .process-model li:last-child {
+    float: left;
+}
+#full-page-wrapper #main-panel .process-model li p {
+    padding: 0;
+    border: none;
+    color: #606060;
+    margin: 0;
+}
+#full-page-wrapper #main-panel .process-model li.active,
+#full-page-wrapper #main-panel .process-model li.visited {
+    color: var(--opposite-color);
+}
+#full-page-wrapper #main-panel .process-model li.active p,
+#full-page-wrapper #main-panel .process-model li.active p:hover,
+#full-page-wrapper #main-panel .process-model li.active p:focus,
+#full-page-wrapper #main-panel .process-model li.visited p,
+#full-page-wrapper #main-panel .process-model li.visited p:hover,
+#full-page-wrapper #main-panel .process-model li.visited p:focus {
+    color: var(--opposite-color);
+}
+#full-page-wrapper #main-panel .process-model li i {
+    display: block;
+    height: 68px;
+    width: 68px;
+    text-align: center;
+    margin: 0 auto;
+    background: #f5f6f7;
+    border: 2px solid #e5e5e5;
+    line-height: 65px;
+    font-size: 30px;
+    border-radius: 50%;
+    transition: all 0.5s;
+}
+#full-page-wrapper #main-panel .process-model li.active i,
+#full-page-wrapper #main-panel .process-model li.visited i  {
+    background: #fff;
+    border-color: var(--opposite-color);
+}
+#full-page-wrapper #main-panel .process-model li span {
+    margin-top: 10px;
+    display: inline-block;
+}
+#full-page-wrapper #main-panel .process-model li.active span,
+#full-page-wrapper #main-panel .process-model li.visited span {
+    font-weight: 600;
+}
+#full-page-wrapper #main-panel .box {
+    border-radius: 25px;
+    padding: 2em 0;
+    background-color: #ececec;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    transition: all 0.6s;
+}
+#full-page-wrapper #main-panel .box:hover {
+    background-color: #e0e0e0;
+}
+#full-page-wrapper #main-panel .gender {
+    cursor: pointer;
+    transition: all 0.4s;
+}
+#full-page-wrapper #main-panel #select-gender .gender i {
+    font-size: 100px;
+    transition: all 0.4s;
+}
+#full-page-wrapper #main-panel #male.active {
+    background-color: #2196f3 !important;
+}
+#full-page-wrapper #main-panel #female.active {
+    background-color: #e91e63 !important;
+}
+#full-page-wrapper #main-panel #select-gender .gender.active i {
+    color: white !important;
+}
+#full-page-wrapper #main-panel .box h4 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+#full-page-wrapper #main-panel .box#general-health h4 {
+    margin-bottom: 20px;
+}
+#full-page-wrapper #main-panel .box p.desc {
+    font-size: 14px;
+    padding: 0 20px;
+    margin: 10px 0 0;
+    text-align: justify;
+}
+#full-page-wrapper #main-panel .box p.counter {
+    font-size: 32px;
+    margin: 10px;
+    padding: 0;
+}
+#full-page-wrapper #main-panel .box #height {
+    font-size: 32px;
+}
+#full-page-wrapper #main-panel .box .buttons-wrapper .btn-floating {
+
+}
+#full-page-wrapper #main-panel .box #fruits div:first-child button,
+#full-page-wrapper #main-panel .box #heart-attack div:first-child button,
+#full-page-wrapper #main-panel .box #blood-pressure div:first-child button,
+#full-page-wrapper #main-panel .box #cholesterol div:first-child button {
+    margin: 20px 0;
+}
+#full-page-wrapper #main-panel .box button.inactive {
+    background-color: #757575;
+}
+#full-page-wrapper #main-panel #page-4 h3 {
+    margin: 0 0 20px;
+    padding: 0;
+    font-size: 26px;
+}
+#full-page-wrapper #main-panel #page-4 #risk {
+    font-size: 98px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#full-page-wrapper #main-panel #page-4 #risk.blue-gradient {
+    background-image: linear-gradient(to right, #7BC6CC 0%, #BE93C5 100%);
+}
+#full-page-wrapper #main-panel #page-4 #risk.green-gradient {
+    background-image: linear-gradient(to right, #52c234 0%, #78ffd6 100%);
+}
+#full-page-wrapper #main-panel #page-4 #risk.yellow-gradient {
+    background-image: linear-gradient(to right, #FDC830 0%, #F37335 100%);
+}
+#full-page-wrapper #main-panel #page-4 #risk.red-gradient {
+    background-image: linear-gradient(to right, #e91e63 0%, #673ab7 100%);
+}
+#full-page-wrapper #main-panel #page-4 .row p {
+    margin: 20px 0;
+    font-size: 16px;
+}
+#full-page-wrapper #main-panel #page-4 .row span {
+    color: #2196f3;
+    cursor: pointer;
+}
+#full-page-wrapper #main-panel #page-5 img {
+    border-radius: 25px;
+}
+#full-page-wrapper #main-panel #page-5 p {
+    font-size: 16px;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    #full-page-wrapper {
+        position: initial;
+    }
+    #full-page-wrapper #main-page {
+        width: 100%;
+    }
+    #full-page-wrapper #main-page #form-wrapper {
+        padding: 0;
+    }
+    #full-page-wrapper #main-page > .card {
+        background: rgba(255, 255, 255, 0);
+        box-shadow: none;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}

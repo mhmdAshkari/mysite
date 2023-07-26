@@ -1,0 +1,155 @@
+/*  general */
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    background-color: #444;
+    overflow-x: hidden;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+li,
+td,
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: 'enFontRegular', enFontRegular, Tahoma, serif;
+}
+p,
+a,
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-size: 14px;
+}
+a {
+    color: var(--main-color);
+}
+p span.colorize {
+    color: var(--main-color);
+}
+.inline-block {
+    display: inline-block;
+}
+
+.padding-zero {
+    padding: 0 !important;
+}
+.card {
+    box-shadow: 0 1px 20px 0 rgb(69 90 100 / 30%);
+}
+.material-tooltip {
+    background-color: #37474f;
+}
+.toast-text {
+    direction: rtl;
+    text-align: center;
+}
+.no-margin{
+    margin: 0;
+}
+.no-padding{
+    padding: 0;
+}
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+.margin-bottom-15 {
+    margin-bottom: 15px;
+}
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
+/*input*/
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+input[type=time]:not(.browser-default):focus:not([readonly]),
+input[type=date]:not(.browser-default):focus:not([readonly]),
+input[type=datetime]:not(.browser-default):focus:not([readonly]),
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+input[type=tel]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid var(--main-color);
+    -webkit-box-shadow: 0 1px 0 0 var(--main-color);
+    box-shadow: 0 1px 0 0 var(--main-color);
+}
+input:not([type]):focus:not([readonly])+label,
+input[type=text]:not(.browser-default):focus:not([readonly])+label,
+input[type=password]:not(.browser-default):focus:not([readonly])+label,
+input[type=email]:not(.browser-default):focus:not([readonly])+label,
+input[type=url]:not(.browser-default):focus:not([readonly])+label,
+input[type=time]:not(.browser-default):focus:not([readonly])+label,
+input[type=date]:not(.browser-default):focus:not([readonly])+label,
+input[type=datetime]:not(.browser-default):focus:not([readonly])+label,
+input[type=datetime-local]:not(.browser-default):focus:not([readonly])+label,
+input[type=tel]:not(.browser-default):focus:not([readonly])+label,
+input[type=number]:not(.browser-default):focus:not([readonly])+label,
+input[type=search]:not(.browser-default):focus:not([readonly])+label,
+textarea.materialize-textarea:focus:not([readonly])+label{
+    color: var(--main-color);
+}
+[type="radio"]:checked+span:after,
+[type="radio"].with-gap:checked+span:before,
+[type="radio"].with-gap:checked+span:after {
+    border: 2px solid var(--main-color);
+}
+[type="radio"]:checked+span:after,
+[type="radio"].with-gap:checked+span:after {
+    background-color: var(--main-color);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+input[data-autocompleted] {
+    background-color: transparent !important;
+}
+.btn, .btn-large, .btn-small, .btn-floating {
+    background-color: var(--main-color);
+}
+.btn:hover, .btn-large:hover, .btn-small:hover, .btn-floating:hover {
+    background-color: var(--main-darker-color);
+}
+.btn:focus, .btn-large:focus, .btn-small:focus, .btn-floating:focus {
+    background-color: var(--main-darker-color);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active
+{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.col .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+i.left {
+    margin-right: 5px !important;
+}
+
+.btn,
+.btn-large,
+.btn-small,
+.btn-flat {
+    text-transform: inherit;
+}

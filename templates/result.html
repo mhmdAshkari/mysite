@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetes Program</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2196f3" />
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico'%}" type="image/x-icon" />
+
+    <link rel="stylesheet" href="{% static 'assets/css/materialize.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+
+    <script src="{% static 'assets/js/jquery-3.6.0.min.js'%}"></script>
+</head>
+<body>
+    <div id="full-page-wrapper">
+        <div class="circle-shape floating-shapes"></div>
+        <div class="square-shape floating-shapes"></div>
+        <div class="square-shape2 floating-shapes"></div>
+        <div class="square-shape3 floating-shapes"></div>
+        <div id="main-panel">
+            <div class="card" id="page-1" style="display:inline-block;">
+                <div class="page">
+                    <ul class="nav nav-tabs process-model" role="tablist">
+                        <li class="visited">
+                            <p>
+                                <i class="material-icons">accessibility_new</i>
+                                <span>BMI</span>
+                            </p>
+                        </li>
+                        <li class="visited">
+                            <p>
+                                <i class="material-icons">monitor_heart</i>
+                                <span>Health Metrics</span>
+                            </p>
+                        </li>
+                        <li class="active">
+                            <p>
+                                <i class="material-icons">summarize</i>
+                                <span>Result</span>
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="row">
+                        <div class="col s12 center">
+                            <h3>Your Diabetes Risk:</h3>
+                            <h2 id="risk"></h2>
+                        </div>
+                        <div class="col s12 justify">
+                            <p><i class="material-icons left amber-text">warning</i> All these calculations are estimated and done with the help of artificial intelligence and do not represent the real chance of you getting diabetes. If you need specialized information and an accurate estimate, see your Doctor.</p>
+                        </div>
+                        <div class="col s12 center">
+                            <p>What is Diabetes? <span data-this-page="4" data-next-page="5" class="next-page">click here</span> to know more.</p>
+                        </div>
+                    </div>
+                    <button data-this-page="1" data-next-page="2" class="btn waves-effect waves-light next-page">Edit<i class="material-icons">refresh</i></button>
+                </div>
+            </div>
+
+            <div class="card" id="page-5" style="display:none;">
+                <div class="page">
+                    <div class="row">
+                        <div class="col s12">
+                            <img class="responsive-img z-depth-1" src="{% static 'img/diabetes.jpg'%}" alt="diabetes" />
+                            <p>Diabetes is a chronic disease that occurs either when the pancreas does not produce enough insulin or when the body cannot effectively use the insulin it produces. Insulin is a hormone that regulates blood glucose. Hyperglycaemia, also called raised blood glucose or raised blood sugar, is a common effect of uncontrolled diabetes and over time leads to serious damage to many of the body's systems, especially the nerves and blood vessels.</p>
+                            <p>In 2014, 8.5% of adults aged 18 years and older had diabetes. In 2019, diabetes was the direct cause of 1.5 million deaths and 48% of all deaths due to diabetes occurred before the age of 70 years. Another 460 000 kidney disease deaths were caused by diabetes, and raised blood glucose causes around 20% of cardiovascular deaths.</p>
+                            <p>Between 2000 and 2019, there was a 3% increase in age-standardized mortality rates from diabetes. In lower-middle-income countries, the mortality rate due to diabetes increased 13%.</p>
+                            <p>By contrast, the probability of dying from any one of the four main noncommunicable diseases (cardiovascular diseases, cancer, chronic respiratory diseases or diabetes) between the ages of 30 and 70 decreased by 22% globally between 2000 and 2019.</p>
+                            <p><i class="material-icons left pink-text">feed</i> Source: <a href="https://www.who.int/news-room/fact-sheets/detail/diabetes#:~:text=Diabetes%20is%20a%20chronic%20disease,hormone%20that%20regulates%20blood%20glucose." target="_blank">World Health Org</a></p>
+                        </div>
+                    </div>
+                    <button data-this-page="5" data-next-page="1" class="btn waves-effect waves-light next-page">Start Test<i class="material-icons">chevron_right</i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="{% static 'assets/plugins/smooth-scrollbar/smooth-scrollbar.js'%}"></script>
+    <script src="{% static 'assets/plugins/smooth-scrollbar/plugins/overscroll.js'%}"></script>
+    <script src="{% static 'assets/js/materialize.min.js'%}"></script>
+    <script src="{% static 'assets/js/common.js'%}"></script>
+    <script src="{% static 'assets/js/main.js'%}"></script>
+</body>
+</html>
