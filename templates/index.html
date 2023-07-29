@@ -15,6 +15,7 @@
     <script src="{% static 'assets/js/jquery-3.6.0.min.js'%}"></script>
 </head>
 <body>
+
     <div id="full-page-wrapper">
         <div class="circle-shape floating-shapes"></div>
         <div class="square-shape floating-shapes"></div>
@@ -22,12 +23,11 @@
         <div class="square-shape3 floating-shapes"></div>
         <form id="main-panel"  method="post">
             {% csrf_token %}
-
             <div class="card" id="page-1">
                 <div class="page">
                     <div class="center">
                         <i class="material-icons pulse">health_and_safety</i>
-                        <h2>Are you ready to</h2>
+                        <h2>you ready to</h2>
                         <h2>measure your</h2>
                         <h2>Diabetes Risk?</h2>
                     </div>
@@ -112,7 +112,6 @@
             <div class="card" id="page-3" style="display:none;">
                 <div class="page">
                     <input type="hidden" id="blood-pressure-input" name="blood_pressure">
-                    {% csrf_token %}
                     <ul class="nav nav-tabs process-model" role="tablist">
                         <li class="visited">
                             <p>
@@ -180,7 +179,7 @@
                                     <div class="col m4 s12 left-align">
                                         <p>
                                             <label>
-                                                <input name="general-health" type="radio" value="Very Good" checked />
+                                                <input name="general-health" type="radio" value="2" checked />
                                                 <span>Very Good</span>
                                             </label>
                                         </p>
@@ -188,7 +187,7 @@
                                     <div class="col m4 s12 left-align">
                                         <p>
                                             <label>
-                                                <input name="general-health" type="radio" value="Good"/>
+                                                <input name="general-health" type="radio" value="3"/>
                                                 <span>Good</span>
                                             </label>
                                         </p>
@@ -200,7 +199,7 @@
                                     <div class="col m4 s12 left-align">
                                         <p>
                                             <label>
-                                                <input name="general-health" type="radio" value="Normal"/>
+                                                <input name="general-health" type="radio" value="4"/>
                                                 <span>Normal</span>
                                             </label>
                                         </p>
@@ -208,7 +207,7 @@
                                     <div class="col m4 s12 left-align">
                                         <p>
                                             <label>
-                                                <input name="general-health" type="radio" value="Poor"/>
+                                                <input name="general-health" type="radio" value="5"/>
                                                 <span>Poor</span>
                                             </label>
                                         </p>
@@ -222,7 +221,7 @@
                         <div class="col m6 s12">
                             <div class="box z-depth-0">
                                 <h4>Physical Health</h4>
-                                <p class="desc">in the last 30 days, how many days were you physically in perfect health?</p>
+                                <p class="desc">Now thinking about your physical health, which includes physical illness and injury, for how many days during the past 30 </p>
                                 <p class="counter" id="physical-health" data-value="30">30 Days</p>
                                 <div class="buttons-wrapper">
                                     <button disabled class="btn-floating waves-effect waves-light add"><i class="material-icons">add</i></button>
@@ -233,7 +232,7 @@
                         <div class="col m6 s12">
                             <div class="box z-depth-0">
                                 <h4>Mental Health</h4>
-                                <p class="desc">in the last 30 days, how many days were you mentally and psychologically healthy?</p>
+                                <p class="desc">Now thinking about your mental health, which includes stress, depression, and problems with emotions, for how</p>
                                 <p class="counter" id="mental-health" data-value="30">30 Days</p>
                                 <div class="buttons-wrapper">
                                     <button disabled class="btn-floating waves-effect waves-light add"><i class="material-icons">add</i></button>
@@ -280,10 +279,9 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" data-this-page="3" data-next-page="4" class="btn waves-effect waves-light next-page" >Calculate Risk<i class="material-icons">chevron_right</i></button>
+                    <button id="calculate-risk-btn" value="data-calc" type="submit" data-this-page="3" data-next-page="4" class="btn waves-effect waves-light next-page" >Calculate Risk<i class="material-icons">chevron_right</i></button>
                 </div>
             </div>
-
             <div class="card" id="page-4" style="display:none;">
                 <div class="page">
                     <ul class="nav nav-tabs process-model" role="tablist">
@@ -306,10 +304,12 @@
                             </p>
                         </li>
                     </ul>
+
                     <div class="row">
                         <div class="col s12 center">
-                            <h3>Your Diabetes Risk:</h3>
-                            <h2 id="risk"></h2>
+                            <h2>Risk Percentage: <span id="riskPercentage" data-risk="{{ risk }}">{{ risk }}</span> %</h2>                            
+                            <h3>Your Diabetes Risk :</h3>
+                            <h2 id="risk">{{risk}}</h2>
                         </div>
                         <div class="col s12 justify">
                             <p><i class="material-icons left amber-text">warning</i> All these calculations are estimated and done with the help of artificial intelligence and do not represent the real chance of you getting diabetes. If you need specialized information and an accurate estimate, see your Doctor.</p>
@@ -318,9 +318,10 @@
                             <p>What is Diabetes? <span data-this-page="4" data-next-page="5" class="next-page">click here</span> to know more.</p>
                         </div>
                     </div>
-                    <button data-this-page="4" data-next-page="2" class="btn waves-effect waves-light next-page">Edit<i class="material-icons">refresh</i></button>
+                    <button id="edit" data-this-page="4" data-next-page="2" class="btn waves-effect waves-light next-page">Edit<i class="material-icons">refresh</i></button>
                 </div>
             </div>
+            
 
             <div class="card" id="page-5" style="display:none;">
                 <div class="page">
@@ -332,92 +333,108 @@
                             <p>Between 2000 and 2019, there was a 3% increase in age-standardized mortality rates from diabetes. In lower-middle-income countries, the mortality rate due to diabetes increased 13%.</p>
                             <p>By contrast, the probability of dying from any one of the four main noncommunicable diseases (cardiovascular diseases, cancer, chronic respiratory diseases or diabetes) between the ages of 30 and 70 decreased by 22% globally between 2000 and 2019.</p>
                             <p><i class="material-icons left pink-text">feed</i> Source: <a href="https://www.who.int/news-room/fact-sheets/detail/diabetes#:~:text=Diabetes%20is%20a%20chronic%20disease,hormone%20that%20regulates%20blood%20glucose." target="_blank">World Health Org</a></p>
-                        </div>
+                        </div>formatted_prediction = 
                     </div>
                     <button data-this-page="5" data-next-page="1" class="btn waves-effect waves-light next-page">Start Test<i class="material-icons">chevron_right</i></button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
+
+
+
     <script type="text/javascript">
-        $(document).on('submit', '#main-panel', function(e) {
-            e.preventDefault(); // Prevent the default form submission behavior
-            var heartattack = false; 
-            var Fruits = false;
+        $(document).ready(function() {
+            var calcValue = 0; // Initialize the calcValue to 0 initially
+            var heartattack = 0; 
+            var Fruits = 0;
             var selectedGender = 'female';
-            var blood_pressure= false;
-            var cholesterol=false;
+            var blood_pressure= 0;
+            var cholesterol=0;
             var ageValue = $('#age').text().trim();
             var weightValue = $('#weight').text().trim();
             var physical_health = $('#physical-health').text().trim();
             var generalHealthValue = $('input[name="general-health"]:checked').val();
-            var mental_health = $("mental-health").text().trim();
-            $(document).ready(function() {
-                var isHeartAttack = $('#heartattack').hasClass('active');
-                var isFruits = $('#Fruits').hasClass('active');
-                var isCholesteroll = $('#cholesteroll').hasClass('active');
-                var isBloodPressure = $('#pressure').hasClass('active');
-                var isMaleActive = $('#male').hasClass('active');
-                //var isFemaleActive = $('#female').hasClass('active');
-                if (isHeartAttack) {
-                    heartattack = true;
-                }
-                if (isFruits) {
-                    Fruits = true;
-                }
-                if (isMaleActive) {
-                    selectedGender = 'male';
-                } 
-                if (isBloodPressure) {
-                    blood_pressure = true;
-                }
-                if(isCholesteroll){
-                    cholesterol = true;
-                }
+            var mental_health = $("#mental-health").text().trim();
+            // Add click event listener to the calculate-risk-btn
+            $('#calculate-risk-btn').on('click', function() {
+                
+                calcValue = 1; // Update calcValue to 1 when the button is clicked
+                console.log("calcValue:", calcValue); // Optional: Check the updated value
+            });
 
-                console.log("blood pressure: ",blood_pressure)
-                console.log("Selected Gender: ", selectedGender);
-    
-                console.log("Starting");
-                console.log($('#height').val());
-                console.log("General Health:", generalHealthValue);
-                console.log("physical_health" , physical_health);
+            $('#edit').on('click', function() {
+                
+                calcValue = 0; // Update calcValue to 1 when the button is clicked
+                console.log("calcValue:", calcValue); // Optional: Check the updated value
+            });
+            $('#main-panel').on('submit', function(e) {            
+                console.log("calcValue:", calcValue);
+                e.preventDefault(); // Prevent the default form submission behavior
 
-                $.ajax({
-                    url: '', // Replace with the actual URL of your AJAX view
-                    type: 'POST',
-                    data: {
-                        height: $('#height').val(),
-                        age: ageValue,
-                        heartattack: heartattack,
-                        weight: weightValue,
-                        selected_gender: selectedGender, // Include the selectedGender here
-                        blood_pressure: blood_pressure,
-                        cholesterol: cholesterol, 
-                        general_health: generalHealthValue,
-                        physical_health: physical_health,
-                        mental_health: mental_health,
-                        Fruits: Fruits,
-                        csrfmiddlewaretoken: '{{ csrf_token }}'
-                    },
-                    success: function(response) {
-                        console.log("success");
-                        // Handle the success response from the server
-                        // You can update the page content based on the response data
-                    },
-                    error: function(xhr, errmsg, err) {
-                        console.log("error");
-                        // Handle any errors that occur during the AJAX request
-                        console.log(xhr.status + ": " + xhr.responseText);
+                $(document).ready(function() {
+                    var isHeartAttack = $('#heartattack').hasClass('active');
+                    var isFruits = $('#Fruits').hasClass('active');
+                    var isCholesteroll = $('#cholesteroll').hasClass('active');
+                    var isBloodPressure = $('#pressure').hasClass('active');
+                    var isMaleActive = $('#male').hasClass('active');
+                    //var isFemaleActive = $('#female').hasClass('active');
+                    if (isHeartAttack) {
+                        heartattack = 1;
                     }
+                    if (isFruits) {
+                        Fruits = 1;
+                    }
+                    if (isMaleActive) {
+                        selectedGender = 'male';
+                    } 
+                    if (isBloodPressure) {
+                        blood_pressure = 1;
+                    }
+                    if(isCholesteroll){
+                        cholesterol = 1;
+                    }
+    
+    
+                    $.ajax({
+                        url: '', // Replace with the actual URL of your AJAX view
+                        type: 'POST',
+                        data: {
+                            height: $('#height').val(),
+                            age: ageValue,
+                            heartattack: heartattack,
+                            weight: weightValue,
+                            selected_gender: selectedGender, // Include the selectedGender here
+                            blood_pressure: blood_pressure,
+                            cholesterol: cholesterol, 
+                            general_health: generalHealthValue,
+                            physical_health: physical_health,
+                            mental_health: mental_health,
+                            Fruits: Fruits,
+                            calc: calcValue,
+                            csrfmiddlewaretoken: '{{ csrf_token }}'
+                        },
+                        success: function(response) {
+                            if (response && response.risk) {
+                                $('#riskPercentage').text(response.risk);
+                                // Update the risk value in the h2 element
+                                $('#risk').text(response.risk + ' %');
+                                console.log("Risk:", response.risk);
+                            }
+                            console.log("success");
+                            // Handle the success response from the server
+                            // You can update the page content based on the response data
+                        },
+                        error: function(xhr, errmsg, err) {
+                            console.log("error");
+                            // Handle any errors that occur during the AJAX request
+                            console.log(xhr.status + ": " + xhr.responseText);
+                        }
+                    });
                 });
             });
         });
     </script>
-
-
-
-    
     
     
     <script src="{% static 'assets/plugins/smooth-scrollbar/smooth-scrollbar.js'%}"></script>
